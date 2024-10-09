@@ -1,43 +1,24 @@
-import React, { ReactNode } from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import CustomThemeProvider from "@/themes/CustomThemeProvider";
+import React, { ReactNode } from 'react';
+import Header from '@/layouts/Layout/Header'; // Kendi Header componentinizi içe aktarın
+import Footer from '@/layouts/Layout/Footer'; // Kendi Footer componentinizi içe aktarın
 
 interface LayoutProps {
-  children: ReactNode;
+  children: ReactNode; // children yapısı ile gelen verileri temsil eder
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div>
-      <CustomThemeProvider>
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6" component="div">
-              Header
-            </Typography>
-          </Toolbar>
-        </AppBar>
+    <div className="flex flex-col min-h-screen">
+      {/* Header */}
+      <Header />
 
-        <Container>
-          <Box mt={2}>{children}</Box>
-        </Container>
+      {/* Ana içerik */}
+      <main className="flex-grow">
+        {children}
+      </main>
 
-        <AppBar
-          position="static"
-          color="primary"
-          style={{ top: "auto", bottom: 0 }}
-        >
-          <Toolbar>
-            <Typography variant="body1" component="div">
-              Footer
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </CustomThemeProvider>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

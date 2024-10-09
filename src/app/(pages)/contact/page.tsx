@@ -2,7 +2,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>
+    <div className='container'>
         <h1>İletişim Sayfası</h1>
     </div>
   )

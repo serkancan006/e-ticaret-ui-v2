@@ -3,7 +3,7 @@ import React from 'react'
 const page = () => {
   return (
     <div className='container'>
-        <h1>Ana Sayfa</h1>
+        <h1>Admin Products</h1>
     </div>
   )
 }

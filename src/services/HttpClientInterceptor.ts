@@ -1,10 +1,10 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
 
 // Create an Axios instance
-const httpClient = axios.create();
+const customHttpClient = axios.create();
 
 // Interceptor for requests
-httpClient.interceptors.request.use(
+customHttpClient.interceptors.request.use(
     config => {
         // Her isteğin öncesinde yapılacak işlemler (örneğin, header eklemek)
         
@@ -24,7 +24,7 @@ httpClient.interceptors.request.use(
 );
 
 // Interceptor for responses
-httpClient.interceptors.response.use(
+customHttpClient.interceptors.response.use(
     (response: AxiosResponse) => {
         console.log('Response received:', response);
         return response;
@@ -71,4 +71,4 @@ const handleError = (error: AxiosError) => {
 };
 
 // Export the configured axios instance as httpClient
-export default httpClient; 
+export default customHttpClient; 

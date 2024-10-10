@@ -1,4 +1,4 @@
-import httpClient from './HttpClientInterceptor';
+import customHttpClient from './HttpClientInterceptor';
 import { AxiosResponse, AxiosHeaders } from 'axios';
 
 // URL oluşturma fonksiyonu
@@ -7,7 +7,7 @@ const url = (requestParameter: Partial<RequestParamaters>): string => {
 }
 
 // GET fonksiyonu
-export async function get<T>(requestParameter: Partial<RequestParamaters>, id?: string): Promise<AxiosResponse<T>> {
+export async function getAsync<T>(requestParameter: Partial<RequestParamaters>, id?: string): Promise<AxiosResponse<T>> {
     let requestUrl: string;
 
     if (requestParameter.fullEndpoint) {
@@ -17,7 +17,7 @@ export async function get<T>(requestParameter: Partial<RequestParamaters>, id?: 
     }
 
     // Axios ile GET isteği
-    const response: AxiosResponse<T> = await httpClient.get<T>(requestUrl, {
+    const response: AxiosResponse<T> = await customHttpClient.get<T>(requestUrl, {
         headers: {
             ...requestParameter.headers, // Doğru şekilde headers'ı ekleme
         },
@@ -28,7 +28,7 @@ export async function get<T>(requestParameter: Partial<RequestParamaters>, id?: 
 }
 
 // POST fonksiyonu
-export async function post<T>(requestParameter: Partial<RequestParamaters>, body: Partial<T>): Promise<AxiosResponse<T>> {
+export async function postAsync<T>(requestParameter: Partial<RequestParamaters>, body: Partial<T>): Promise<AxiosResponse<T>> {
     let requestUrl: string;
 
     if (requestParameter.fullEndpoint) {
@@ -38,7 +38,7 @@ export async function post<T>(requestParameter: Partial<RequestParamaters>, body
     }
 
     // Axios ile POST isteği
-    const response: AxiosResponse<T> = await httpClient.post<T>(requestUrl, body, {
+    const response: AxiosResponse<T> = await customHttpClient.post<T>(requestUrl, body, {
         headers: {
             ...requestParameter.headers, // Doğru şekilde headers'ı ekleme
         },
@@ -49,7 +49,7 @@ export async function post<T>(requestParameter: Partial<RequestParamaters>, body
 }
 
 // PUT fonksiyonu
-export async function put<T>(requestParameter: Partial<RequestParamaters>, body: Partial<T>): Promise<AxiosResponse<T>> {
+export async function putAsync<T>(requestParameter: Partial<RequestParamaters>, body: Partial<T>): Promise<AxiosResponse<T>> {
     let requestUrl: string;
 
     if (requestParameter.fullEndpoint) {
@@ -59,7 +59,7 @@ export async function put<T>(requestParameter: Partial<RequestParamaters>, body:
     }
 
     // Axios ile PUT isteği
-    const response: AxiosResponse<T> = await httpClient.put<T>(requestUrl, body, {
+    const response: AxiosResponse<T> = await customHttpClient.put<T>(requestUrl, body, {
         headers: {
             ...requestParameter.headers, // Doğru şekilde headers'ı ekleme
         },
@@ -71,7 +71,7 @@ export async function put<T>(requestParameter: Partial<RequestParamaters>, body:
 
 
 // DELETE fonksiyonu
-export async function deleteReq<T>(requestParameter: Partial<RequestParamaters>, id: string): Promise<AxiosResponse<T>> {
+export async function deleteAsync<T>(requestParameter: Partial<RequestParamaters>, id: string): Promise<AxiosResponse<T>> {
     let requestUrl: string;
 
     // URL oluşturma
@@ -82,7 +82,7 @@ export async function deleteReq<T>(requestParameter: Partial<RequestParamaters>,
     }
 
     // Axios ile DELETE isteği
-    const response: AxiosResponse<T> = await httpClient.delete<T>(requestUrl, {
+    const response: AxiosResponse<T> = await customHttpClient.delete<T>(requestUrl, {
         headers: {
             ...requestParameter.headers, // Doğru şekilde headers'ı ekleme
         },

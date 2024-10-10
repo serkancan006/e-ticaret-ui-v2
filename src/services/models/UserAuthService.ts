@@ -38,13 +38,13 @@ export function login(
       { userNameOrEmail, password }
     )
     .then((response) => {
-      console.log("Başarılı yanıt:", response.data);
+      console.log("UserAuthService: Başarılı yanıt:", response.data);
       succesCallBack?.();
     })
     .catch((error) => {
-      console.error("Hata:", error);
+      console.error("UserAuthService: Hata:", error);
 
-      const errorMessage = error.response?.data?.message || "Bir hata oluştu";
+      const errorMessage = error.response?.data?.message || "UserAuthService: Bir hata oluştu";
       errorCallBack?.(errorMessage);
     });
 }

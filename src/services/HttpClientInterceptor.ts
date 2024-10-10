@@ -1,4 +1,5 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
+import * as authTokenService from '@/services/AuthTokenService'
 
 // Create an Axios instance
 const customHttpClient = axios.create();
@@ -8,8 +9,7 @@ customHttpClient.interceptors.request.use(
     config => {
         // Her isteğin öncesinde yapılacak işlemler (örneğin, header eklemek)
         
-        //const token = TokenService.getToken() // Token'i al
-        const token = localStorage.getItem('access-token') // Token'i al
+        const token = authTokenService.getAccessToken();
   
         if (token) {
           config.headers.Authorization = `Bearer ${token}` // Header'a Bearer token ekle
@@ -18,7 +18,7 @@ customHttpClient.interceptors.request.use(
         return config
     },
     (error) => {
-        console.error('Request error:', error);
+        console.error('interceptor: Request error:', error);
         return Promise.reject(error);
     }
 );
@@ -26,7 +26,7 @@ customHttpClient.interceptors.request.use(
 // Interceptor for responses
 customHttpClient.interceptors.response.use(
     (response: AxiosResponse) => {
-        console.log('Response received:', response);
+        console.log('interceptor: Response received:', response);
         return response;
     },
     (error) => {
@@ -38,35 +38,35 @@ customHttpClient.interceptors.response.use(
 // Centralized error handling function
 const handleError = (error: AxiosError) => {
     if (error.response) {
-        console.error('Error Response:', error.response.data);
-        console.error('Error Status:', error.response.status);
-        console.error('Error Headers:', error.response.headers);
+        console.error('Http client interceptor: Error Response:', error.response.data);
+        console.error('Http client interceptor: Error Status:', error.response.status);
+        console.error('Http client interceptor: Error Headers:', error.response.headers);
 
         switch (error.response.status) {
             case 400:
-                alert('Bad Request.');
+                alert('interceptor: Geçersiz İstek!');
                 break;
             case 404:
-                alert('Resource not found.');
+                alert('interceptor: Kaynak Bulunamadı!');
                 break;
             case 401:
-                alert('Unauthorized! Please log in.');
+                alert('interceptor: Yetkisiz İşlem! Lütfen Login Olun!');
                 break;
             case 403:
-                alert('Yetkisiz İşlem.');
+                alert('interceptor: Yetkisiz İşlem! Yetkiniz Olmadan Erişemezsiniz');
                 break;
             case 500:
-                alert('Server error! Please try again later.');
+                alert('interceptor: Server Hatası! Lütfen Tekrar Deneyin!');
                 break;
             default:
-                alert('An error occurred! Please try again.');
+                alert('interceptor: Bir Hata Oluştu! Lütfen Tekrar Deneyin!');
         }
     } else if (error.request) {
-        console.error('Error Request:', error.request);
-        alert('No response from the server. Please check your network.');
+        console.error('Http client interceptor: Error Request:', error.request);
+        alert('Http client interceptor: No response from the server. Please check your network.');
     } else {
-        console.error('Error Message:', error.message);
-        alert('Error occurred: ' + error.message);
+        console.error('Http client interceptor: Error Message:', error.message);
+        alert('Http client interceptor: Error occurred: ' + error.message);
     }
 };
 

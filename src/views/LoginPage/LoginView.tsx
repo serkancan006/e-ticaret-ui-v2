@@ -3,11 +3,12 @@
 import Image from "next/image";
 import { useFormik, FormikHelpers } from "formik";
 import LoginFormType from "@/types/constract/login/LoginFormType";
+import * as userAuthService from '@/services/models/UserAuthService'
 
 export default function LoginView() {
   // Start Formik
   const onSubmit = (values: LoginFormType, action: FormikHelpers<LoginFormType>) => {
-    alert(JSON.stringify(values, null, 2));
+    userAuthService.login(values.username, values.password, () => alert('kullanıcı başarıyla eklendi'), (message) => alert(message))
     
     action.resetForm();
   };

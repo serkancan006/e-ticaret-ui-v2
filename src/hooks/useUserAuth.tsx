@@ -9,6 +9,7 @@ export const useUserAuth = (userNameOrEmail: string, password: string, successCa
   useEffect(() => {
     setLoading(true);
     setError(null); // Her yeni istek için hatayı sıfırlıyoruz
+    console.log('useUserAuth Hook çalışıyor');
 
     try {
       userAuthService.login(userNameOrEmail, password, successCalback);

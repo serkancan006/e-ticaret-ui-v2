@@ -1,9 +1,10 @@
+import LoginView from '@/views/LoginPage/LoginView'
 import React from 'react'
 
 const page = () => {
   return (
     <div className='container'>
-        <h1>Login</h1>
+        <LoginView />
     </div>
   )
 }

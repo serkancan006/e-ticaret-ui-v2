@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 
 // MUI Theme configuration
-const theme = createTheme({
+const themeConfig = createTheme({
   palette: {
     primary: {
       main: '#1976d2', // Primary color
@@ -29,4 +29,4 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+export default themeConfig;

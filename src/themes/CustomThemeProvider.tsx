@@ -3,7 +3,7 @@
 import React, { ReactNode } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import theme from '@/themes/theme'; // Tema yapılandırmasını içe aktar
+import themeConfig from '@/themes/themeConfig'; // Tema yapılandırmasını içe aktar
 
 interface ClientThemeProviderProps {
   children: ReactNode;
@@ -11,7 +11,7 @@ interface ClientThemeProviderProps {
 
 const CustomThemeProvider: React.FC<ClientThemeProviderProps> = ({ children }) => {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={themeConfig}>
       <CssBaseline />
       {children}
     </ThemeProvider>

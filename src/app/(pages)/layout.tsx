@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
-import Header from '@/layouts/Layout/Header'; // Kendi Header componentinizi içe aktarın
-import Footer from '@/layouts/Layout/Footer'; // Kendi Footer componentinizi içe aktarın
+import Header from '@/layouts/MainLayout/Header'; // Kendi Header componentinizi içe aktarın
+import Footer from '@/layouts/MainLayout/Footer'; // Kendi Footer componentinizi içe aktarın
 
 interface LayoutProps {
   children: ReactNode; // children yapısı ile gelen verileri temsil eder

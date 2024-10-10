@@ -80,6 +80,7 @@ const MenuDialog: React.FC<MenuDialogProp> = ({
                               className="object-cover object-center"
                               width={50}
                               height={50}
+                              loading="lazy"
                             />
                           </div>
                           <a

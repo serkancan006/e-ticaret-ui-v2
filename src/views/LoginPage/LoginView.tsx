@@ -33,6 +33,7 @@ export default function LoginView() {
             className="mx-auto h-10 w-auto"
             width={50}
             height={50}
+            loading="lazy"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Hesabınız ile giriş yapınız

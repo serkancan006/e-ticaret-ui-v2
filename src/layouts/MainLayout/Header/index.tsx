@@ -53,6 +53,7 @@ export default function Header() {
                     unoptimized
                     width={40}
                     height={40}
+                    loading="lazy"
                   />
                 </a>
               </div>
@@ -92,6 +93,7 @@ export default function Header() {
                                         alt={item.imageAlt}
                                         src={item.imageSrc}
                                         className="object-cover object-center"
+                                        loading="lazy"
                                         fill
                                       />
                                     </div>

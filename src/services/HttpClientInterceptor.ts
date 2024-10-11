@@ -1,5 +1,6 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import * as authTokenService from '@/services/AuthTokenService'
+import * as toastifyService from '@/services/notifications/ToastifyService'
 
 // Create an Axios instance
 const customHttpClient = axios.create();
@@ -44,26 +45,26 @@ const handleError = (error: AxiosError) => {
 
         switch (error.response.status) {
             case 400:
-                alert('interceptor: Geçersiz İstek!');
+                toastifyService.message('interceptor: Geçersiz İstek!', {type: 'error'})
                 break;
             case 404:
-                alert('interceptor: Kaynak Bulunamadı!');
+                toastifyService.message('interceptor: Kaynak Bulunamadı!', {type: 'error'})
                 break;
             case 401:
-                alert('interceptor: Yetkisiz İşlem! Lütfen Login Olun!');
+                toastifyService.message('interceptor: Yetkisiz İşlem! Lütfen Login Olun!', {type: 'error'})
                 break;
             case 403:
-                alert('interceptor: Yetkisiz İşlem! Yetkiniz Olmadan Erişemezsiniz');
+                toastifyService.message('interceptor: Yetkisiz İşlem! Yetkiniz Olmadan Erişemezsiniz!', {type: 'error'})
                 break;
             case 500:
-                alert('interceptor: Server Hatası! Lütfen Tekrar Deneyin!');
+                toastifyService.message('interceptor: Server Hatası! Lütfen Tekrar Deneyin!', {type: 'warning'})
                 break;
             default:
-                alert('interceptor: Bir Hata Oluştu! Lütfen Tekrar Deneyin!');
+                toastifyService.message('interceptor: Bilinmeyen Bir Hata Oluştu! Lütfen Tekrar Deneyin!', {type: 'warning'})
         }
     } else if (error.request) {
         console.error('Http client interceptor: Error Request:', error.request);
-        alert('Http client interceptor: No response from the server. Please check your network.');
+        alert('Http client interceptor: Sunucudan yanıt yok. Lütfen ağınızı kontrol edin.');
     } else {
         console.error('Http client interceptor: Error Message:', error.message);
         alert('Http client interceptor: Error occurred: ' + error.message);

@@ -12,7 +12,7 @@ const ProviderContainer: React.FC<{ children: ReactNode }> = ({ children }) => {
           color="#22C55E"
           initialPosition={0.08}
           crawlSpeed={300}
-          height={4}
+          height={3}
           crawl={true}
           showSpinner={true}
           easing="ease"
